@@ -1,0 +1,11 @@
+# Software testing procedures
+
+All aspects of `EdSurvey` software undergo thorough testing. This testing includes the typical unit, integregation and regression tests that are conducted as part of the software development cycle. Software tests such as these are automated and rerun whenever updates are made to the `EdSurvey` software.  In addition to software tests, two additional layers of quality assurance tests are performed whenever functionality to read new sources of data are added to `EdSurvey`. These alpha tests (described in detail below) are conducted to ensure that basic operations and analyses conducted using `EdSurvey` software in conjunction with official data will reproduce results that are produced in other software packages or in other sources like the NDE or NAEP Data Companion. 
+
+## Read-in testing
+
+Before analyzing data in `EdSurvey` it must first be loaded into R as an `EdSurvey` data frame. This is done as described in the previous sections by calling the appropriate "read-in" function and providing a path to the raw data (for example `readNAEP(path="C:\data\NAEP.dat")`). To test this, for each "read-in" function, data files are compared after being created using both `EdSurvey` and another method. We expect the files to match, with some very minor allowances for differences that might arise because of features only available in specific software packages (like SAS' special missing values). Historically, the most common format used for the release of large data files has been SAS. As such, virtually all of the read-in testing has employed SAS for the read-in comparison. 
+
+## Analytical testing
+
+To conduct statistical computations `EdSurvey` must determine the appropriate weights, plausible values, and other survey meta-information relevant to analysis. To test that `EdSurvey` has successfully determined and made use of the required meta-information, and that the statistical procedures that have been applied produce valid results, a rudimentary analysis is carried out in `EdSurvey` and a comparison package like SAS and results are compared to confirm they match. 
